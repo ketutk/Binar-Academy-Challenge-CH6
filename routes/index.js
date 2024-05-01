@@ -1,0 +1,10 @@
+var express = require("express");
+const { image } = require("../libs/multer");
+const { imageKitUpload, imageKitList, imageKitDetail, imageKitDelete, imageKitEdit } = require("../controllers/media.controller");
+var router = express.Router();
+router.get("/imagekit/images", imageKitList);
+router.get("/imagekit/images/:id", imageKitDetail);
+router.put("/imagekit/images/:id", imageKitEdit);
+router.delete("/imagekit/images/:id", imageKitDelete);
+router.post("/imagekit/images/upload", image.single("file"), imageKitUpload);
+module.exports = router;
