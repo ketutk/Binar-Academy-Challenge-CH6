@@ -169,6 +169,13 @@ module.exports = {
     try {
       const { id } = req.params;
       const { judul, deskripsi } = req.body;
+      if (!judul || !deskripsi) {
+        return res.status(400).json({
+          status: false,
+          message: "Required field missing",
+          data: null,
+        });
+      }
 
       const imageData = await prisma.image.findUnique({
         where: {
